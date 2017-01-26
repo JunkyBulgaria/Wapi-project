@@ -41,6 +41,7 @@ if(isset($_FILES["fileToUpload"]))
 	if(isset($resume)) $resume = $db->quote_smart($resume); else  { $eligible = 0;  $err = "7"; }
 	/* -------------------------------------------------------------- */
 	
+	$book_publishdate = date('Y-m-d', strtotime(str_replace('-', '/', $book_publishdate)));	// convert publishdate to fit mysql
 	
 	$bookcover = $target_file;
 	$hashed_cover = md5($bookcover.$book_title); // directory/filename.extension + post title
@@ -97,7 +98,15 @@ if(isset($_FILES["fileToUpload"]))
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="stylesheet" href="css/style.css">
+		<script>
+			$( function() {
+				$( "#datepicker" ).datepicker();
+			} );
+		</script>
     </head>
 
     <body>
@@ -130,7 +139,7 @@ if(isset($_FILES["fileToUpload"]))
                                             </div>
                                             <!-- top right content -->
                                             <div class="content-right" style="width: 350px;">
-                                                <input class="input-form" type="text" name="publishdate" placeholder="Publish Date"></input>
+                                                <input class="input-form" type="text" name="publishdate" placeholder="Publish Date" id="datepicker"></input>
                                                 <input class="input-form" type="text" name="format" placeholder="Format" style="margin-top: 10px;"></input>
                                             </div>
 											<!-- bottom left content -->
