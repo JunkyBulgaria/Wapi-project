@@ -6,13 +6,16 @@ include("inc/config.php");
 if(isset($_SESSION['login_user']))
 	header("location: browse.php");
 
+if(isset($_POST["username"]) && isset($_POST["password"]))
+{
 $db = new SQL;
 $db->connect($host, $username, $password);
 $db->query("use `wapi`;");
+
 $user = $_POST["username"];
 $pass = $_POST["password"];
 $hashed_pass = openssl_digest($pass, 'sha512');
-echo $hashed_pass;
+
 // overwrite and escape string
 if(isset($user)) $user = $db->quote_smart($user);
 if(isset($pass)) $pass = $db->quote_smart($pass);
@@ -24,7 +27,7 @@ if($db->num_rows($query) == 1)
 	$_SESSION['login_user'] = $username;
 	header("location: browse.php");
 }
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
