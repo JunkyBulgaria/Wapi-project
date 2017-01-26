@@ -143,7 +143,12 @@ if(isset($_FILES["fileToUpload"]))
                                             <!-- top right content -->
                                             <div class="content-right" style="width: 350px;">
                                                 <input class="input-form" type="text" name="publishdate" placeholder="Publish Date" id="datepicker"></input>
-                                                <input class="input-form" type="text" name="format" placeholder="Format" style="margin-top: 10px;"></input>
+												  <select class="input-form"  name="format" style="margin-top: 10px;">
+													<option value="A4">A4</option>
+													<option value="A3">A3</option>
+													<option value="E-Book">E-Book</option>
+													<option value="Plain Text">Plain Text</option>
+												  </select>
                                             </div>
 											<!-- bottom left content -->
                                             <div class="content-left" style="width: 350px;padding-top: 45px;">
