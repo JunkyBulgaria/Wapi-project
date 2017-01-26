@@ -43,6 +43,9 @@ if(isset($_FILES["fileToUpload"]))
 	
 	$book_publishdate = date('Y-m-d', strtotime(str_replace('-', '/', $book_publishdate)));	// convert publishdate to fit mysql
 	
+	if(!validateDate($book_publishdate))
+		$eligible = 0;
+
 	$bookcover = $target_file;
 	$hashed_cover = md5($bookcover.$book_title); // directory/filename.extension + post title
 	$image = $target_dir.$hashed_cover.".".$imageFileType; // used to generate the new image location

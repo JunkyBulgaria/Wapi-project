@@ -13,4 +13,15 @@ $title = "WAPI Online Library";
 $target_dir = "uploads/"; // upload directory (to store the book covers)
 $filesize = 1000000; // maximum file size, 1 mb?
 
+
+
+
+// misc
+
+function validateDate($date)
+{
+    $d = DateTime::createFromFormat('Y-m-d', $date);
+    return $d && $d->format('Y-m-d') === $date;
+}
+
 ?>
