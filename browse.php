@@ -40,17 +40,9 @@ $booksquery = $db->query($allbooks);
                         <!-- right navbar -->
                         <div class="head-right">
                             <div class="col-sm-2" style="width: auto;top: 19px;right: 55px">
-                                <button class="button">
-                                    All books 
-                                    <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;">
-                                        <!-- glyphicon @todo -->
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="col-sm-2" style="width: auto;top: 19px;right: 55px">
-                                <a href="login.php">
+                                <a href="insert.php">
                                     <button class="button">
-                                        Login 
+                                        New Book 
                                         <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;">
                                             <!-- glyphicon @todo -->
                                         </span>
@@ -70,8 +62,8 @@ $booksquery = $db->query($allbooks);
                             <?php echo $row['author']; ?><br>
                             Pages: <?php echo $row['pages']; ?><br>
                             Format: <?php echo $row['format']; ?><br>
-                            ISDN: <?php echo $row['isdn']; ?><br>
-                            Publish Date:<?php echo $row['publishdate']; ?>
+                            ISBN: <?php echo $row['isbn']; ?><br>
+                            Publish Date: <?php echo $row['publishdate']; ?>
                         </div>
                         <?php } ?>
                     </div>
