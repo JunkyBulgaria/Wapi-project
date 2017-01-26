@@ -75,8 +75,8 @@ $booksquery = $db->query($allbooks);
                         </div>
                         <?php } ?>
                     </div>
-                    <div class="content-right" style="width: 350px;padding-top: 45px; padding-left:213px;"> <button type="submit" class="button" style="margin-left: -84px;">Next <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;"></span></button> </div>
-                    <div class="content-left" style="width: 350px;padding-top: 45px; padding-left:213px;"> <button type="submit" class="button" style="margin-left: -125px;">Previous <span class="glyphicon glyphicon-book" style="vertical-align:center; align:left;"></span></button> </div>
+                    <div class="content-left" style="width: 350px;padding-top: 45px; padding-left:213px;"><a href="browse.php?page=<?php if($page <= 1) echo "1"; else echo $page-1; ?>"><button type="submit" class="button" style="margin-left: -125px;">Previous <span class="glyphicon glyphicon-book" style="vertical-align:center; align:left;"></span></button></a></div>
+                    <div class="content-right" style="width: 350px;padding-top: 45px; padding-left:213px;"><a href="browse.php?page=<?php echo $page+1; ?>"> <button type="submit" class="button" style="margin-left: -84px;">Next <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;"></span></button></a></div>
                 </div>
             </div>
         </div>
