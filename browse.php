@@ -1,6 +1,10 @@
 <?php 
+session_start(); 
 include("libs/mysql.php"); 
 include("inc/config.php");
+
+if(!isset($_SESSION['login_user']))
+	header("location: login.php");
 
 $db = new SQL;
 $db->connect($host, $username, $password);

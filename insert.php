@@ -1,6 +1,10 @@
 <?php 
+session_start(); 
 include("libs/mysql.php"); 
 include("inc/config.php");
+
+if(!isset($_SESSION['login_user']))
+	header("location: login.php");
 
 $db = new SQL;
 $db->connect($host, $username, $password);
@@ -110,7 +114,6 @@ if(isset($_FILES["fileToUpload"]))
                                   <!-- right navbar -->
                                   <div class="head-right">
                                       <div class="col-sm-2" style="width: auto;top: 19px;right: 55px"><a href="browse.php"> <button class="button">All books <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;"><!-- glyphicon @todo --></span></button></a></div>
-                                      <div class="col-sm-2" style="width: auto;top: 19px;right: 55px"><a href="login.php"><button class="button"> Login <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;"><!-- glyphicon @todo --></span></button></a></div>
                                   </div>
                                 </div>
                         </div>

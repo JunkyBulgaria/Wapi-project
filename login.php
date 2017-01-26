@@ -1,3 +1,31 @@
+<?php
+session_start(); 
+include("libs/mysql.php"); 
+include("inc/config.php");
+
+if(isset($_SESSION['login_user']))
+	header("location: browse.php");
+
+$db = new SQL;
+$db->connect($host, $username, $password);
+$db->query("use `wapi`;");
+$user = $_POST["username"];
+$pass = $_POST["password"];
+$hashed_pass = openssl_digest($pass, 'sha512');
+echo $hashed_pass;
+// overwrite and escape string
+if(isset($user)) $user = $db->quote_smart($user);
+if(isset($pass)) $pass = $db->quote_smart($pass);
+
+$query = $db->query("select * from users where name = '$user' and password = '$hashed_pass';");
+
+if($db->num_rows($query) == 1)
+{
+	$_SESSION['login_user'] = $username;
+	header("location: browse.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,12 +61,12 @@
                                 <div class="col-sm-5 col-centered"> 
                                   <!-- left navbar -->
                                    <div class="form-bottom">
-                                        <form role="form" action="" method="post" class="login-form">
+                                        <form role="form" action="login.php" method="post" class="login-form">
                                             <div class="form-group">
-                                                <input class="input-form" type="text" name="xxxx" placeholder="Username">
+                                                <input class="input-form" type="text" name="username" placeholder="Username">
                                             </div>
                                             <div class="form-group">
-                                                <input class="input-form" type="password" name="xxxx" placeholder="Password" class="form-password form-control" id="form-password">
+                                                <input class="input-form" type="password" name="password" placeholder="Password" class="form-password form-control" id="form-password">
                                             </div>
                                             <button type="submit" class="button" style="position: relative; left:150px; margin-top: 20px;">Login <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;"><!-- glyphicon @todo --></span></button>
                                         </form>
