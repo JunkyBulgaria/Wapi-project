@@ -10,7 +10,7 @@ $maxbooks = 8; // maksimuma e 8 poradi bootstrap-a (4 x 2)
 
 // site vars
 $title = "WAPI Online Library";
-
-
+$target_dir = "uploads/"; // upload directory (to store the book covers)
+$filesize = 1000000; // maximum file size, 1 mb?
 
 ?>
