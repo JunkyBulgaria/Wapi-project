@@ -10,7 +10,7 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 {
 $db = new SQL;
 $db->connect($host, $username, $password);
-$db->query("use `wapi`;");
+$db->db($database);
 
 $user = $_POST["username"];
 $pass = $_POST["password"];

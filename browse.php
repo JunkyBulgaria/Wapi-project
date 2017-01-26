@@ -8,7 +8,7 @@ if(!isset($_SESSION['login_user']))
 
 $db = new SQL;
 $db->connect($host, $username, $password);
-$db->query("use `wapi`;");
+$db->db($database);
 
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
 if($maxbooks > 8) $maxbooks = 8; // hardcode ako sluchaino nadvishi 8

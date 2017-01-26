@@ -8,7 +8,7 @@ if(!isset($_SESSION['login_user']))
 
 $db = new SQL;
 $db->connect($host, $username, $password);
-$db->query("use `wapi`;"); // select db
+$db->db($database); // select db
 
 
 if(isset($_FILES["fileToUpload"]))
