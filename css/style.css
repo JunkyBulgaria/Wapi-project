@@ -1,0 +1,94 @@
+body
+{
+    background-image: url("../img/bg.png");
+    background-color: #cccccc;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.head-left {
+    float: left;
+}
+
+.col-lg-3 { /* override na bootstrap */
+    width: 22%;
+}
+
+.head-right {
+    float: right;
+}
+
+.content-left {
+    float: left;
+}
+
+.content-right {
+    float: right;
+}
+
+.form-content {
+	padding: 25px 25px 30px 25px;
+	background: #eee;
+	text-align: left;
+    margin-top: 150px;
+    height: auto;
+}
+
+.button {
+    background-color: #a5c603; /* Green */
+    border: 2px solid;
+    border-radius: 8px;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+h3 {
+    font-family: "Calibri";
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+img {
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+}
+
+
+
+.upload-form {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.42857143;
+    color: #434242;
+    background-color: #dfdfdf;
+    background-image: none;
+}
+
+
+
+.input-form {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.42857143;
+    color: #434242;
+    background-color: #dfdfdf;
+    background-image: none;
+    border: 1px solid #949593;
+}
