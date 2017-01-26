@@ -14,7 +14,7 @@ if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
 if($maxbooks > 8) $maxbooks = 8; // hardcode ako sluchaino nadvishi 8
 
 $start_from = ($page-1) * $maxbooks; 
-$allbooks = "select * from books limit $start_from, $maxbooks;";
+$allbooks = "select * from books order by publishdate desc limit $start_from, $maxbooks;";
 $booksquery = $db->query($allbooks);
 ?>
 <!DOCTYPE html>
