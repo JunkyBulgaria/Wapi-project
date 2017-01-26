@@ -1,7 +1,18 @@
+<?php 
+include("libs/mysql.php"); 
+include("inc/config.php");
+
+$db = new SQL;
+$db->connect($host, $username, $password);
+$db->query("use `wapi`;");
+
+$allbooks = "select * from books limit 8;";
+$booksquery = $db->query($allbooks);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>x</title>
+        <title><?php echo $title; ?></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -32,95 +43,19 @@
                     <!-- content -->
                         <div class="row" style="padding-top: 70px">
 							<div class="row" style="padding-left: 120px;">
+						<?php while($row = $db->fetch_assoc($booksquery)){ ?>
+							
 										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
+											<a class="thumbnail" > <img class="img-responsive" src="<?php echo $row['cover']; ?>" alt=""> </a>
+												<?php echo $row['title']; ?><br>
+												<?php echo $row['author']; ?><br>
+												Pages: <?php echo $row['pages']; ?><br>
+												Format: <?php echo $row['format']; ?><br>
+												ISDN: <?php echo $row['isdn']; ?><br>
+												Publish Date:<?php echo $row['publishdate']; ?>
 										</div>
-										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
-										</div>
-										<div class="col-lg-3 col-md-4 col-xs-6" style="text-align: center;">
-											<a class="thumbnail" >
-												<img class="img-responsive" src="http://placehold.it/400x300" alt="">
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a<br>
-												a
-											</a>
-										</div>
-
+										
+						<?php } ?>
 							</div>
 							<div class="content-right" style="width: 350px;padding-top: 45px; padding-left:213px;"> <button type="submit" class="button" style="margin-left: -84px;">Next <span class="glyphicon glyphicon-book" style="vertical-align:center; align:right;"></span></button> </div>
 							<div class="content-left" style="width: 350px;padding-top: 45px; padding-left:213px;"> <button type="submit" class="button" style="margin-left: -125px;">Previous <span class="glyphicon glyphicon-book" style="vertical-align:center; align:left;"></span></button> </div>
