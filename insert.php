@@ -32,19 +32,55 @@ if(isset($_FILES["fileToUpload"]))
 	/* -------------------------------------------------------------- */
 	/* mysql escape characters to prevent xss and overwrite variables */
 	/* -------------------------------------------------------------- */
-	if(isset($book_title)) $book_title = $db->quote_smart($book_title); else { $eligible = 0;  $err = "1"; }
-	if(isset($book_author)) $book_author = $db->quote_smart($book_author); else  { $eligible = 0;  $err = "2"; }
-	if(isset($book_publishdate)) $book_publishdate = $db->quote_smart($book_publishdate); else  { $eligible = 0;  $err = "3"; }
-	if(isset($book_format)) $book_format = $db->quote_smart($book_format); else  { $eligible = 0;  $err = "4"; }
-	if(isset($page_count) && is_numeric($page_count)) $page_count = $db->quote_smart($page_count); else  { $eligible = 0; $err = "5"; }
-	if(isset($isbn) && is_numeric($isbn)) $isbn = $db->quote_smart($isbn); else  { $eligible = 0;  $err = "6"; }
-	if(isset($resume)) $resume = $db->quote_smart($resume); else  { $eligible = 0;  $err = "7"; }
-	/* -------------------------------------------------------------- */
-	
+	// releated to mysql
+	if(isset($book_title)) $book_title = $db->quote_smart($book_title); else { $eligible = 0;  $err = 1; }
+	if(isset($book_author)) $book_author = $db->quote_smart($book_author); else  { $eligible = 0;  $err = 2; }
+	if(isset($book_publishdate)) $book_publishdate = $db->quote_smart($book_publishdate); else  { $eligible = 0;  $err = 3; }
+	if(isset($book_format)) $book_format = $db->quote_smart($book_format); else  { $eligible = 0;  $err = 4; }
+	if(isset($page_count) && is_numeric($page_count)) $page_count = $db->quote_smart($page_count); else  { $eligible = 0; $err = 5; }
+	if(isset($isbn) && is_numeric($isbn)) $isbn = $db->quote_smart($isbn); else  { $eligible = 0;  $err = 6; }
+	if(isset($resume)) $resume = $db->quote_smart($resume); else  { $eligible = 0;  $err = 7; }
+	// non-releated to mysql
 	$book_publishdate = date('Y-m-d', strtotime(str_replace('-', '/', $book_publishdate)));	// convert publishdate to fit mysql
+	/* -------------------------------------------------------------- */
+	if(isset($err))
+	switch($err)
+	{
+		case 1:
+			$notification = '<div class="alert alert-danger"><center>Book title is incorrect</center></div>';
+			$eligible = 0;
+			break;
+		case 2:
+			$notification = '<div class="alert alert-danger"><center>Book author is incorrect</center></div>';
+			$eligible = 0;
+			break;
+		case 3:
+			$notification = '<div class="alert alert-danger"><center>Book publish date is incorrect</center></div>';
+			$eligible = 0;
+			break;
+		case 4:
+			$notification = '<div class="alert alert-danger"><center>Book format is incorrect</center></div>';
+			$eligible = 0;
+			break;
+		case 5:
+			$notification = '<div class="alert alert-danger"><center>Page count is not a number or incorrect</center></div>';
+			$eligible = 0;
+			break;
+		case 6:
+			$notification = '<div class="alert alert-danger"><center>ISBN is not a number or incorrect</center></div>';
+			$eligible = 0;
+			break;
+		case 7:
+			$notification = '<div class="alert alert-danger"><center>Book resume is incorrect</center></div>';
+			$eligible = 0;
+			break;
+	}
 	
 	if(!validateDate($book_publishdate))
+	{
+		$notification = '<div class="alert alert-danger"><center>xxxxxxxxx</center></div>';
 		$eligible = 0;
+	}
 
 	$bookcover = $target_file;
 	$hashed_cover = md5($bookcover.$book_title); // directory/filename.extension + post title
